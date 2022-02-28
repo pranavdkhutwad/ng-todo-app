@@ -1,0 +1,12 @@
+<div class="card mb-3" [ngClass]="getCardBorder()">
+  <div class="card-header bg-transparent d-flex justify-content-between">
+    <div>{{ taskItem?.name }}</div>
+    <div>
+      <span><span class="oi oi-pencil mr-3 text-info"></span></span>
+      <span><span class="oi oi-trash text-danger"></span></span>
+    </div>
+  </div>
+  <div class="card-body">
+    <p>{{ taskItem?.desc }}</p>
+  </div>
+</div>

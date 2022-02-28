@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-lg-4 col-md-4 border-right">
+    <h5>High Priority Tasks</h5>
+    <app-todo-task
+      [taskItem]="task"
+      *ngFor="let task of highPriorityList"
+    ></app-todo-task>
+  </div>
+  <div class="col-lg-4 col-md-4 border-right">
+    <h5>Medium Priority Tasks</h5>
+    <app-todo-task
+      [taskItem]="task"
+      *ngFor="let task of mediumPriorityList"
+    ></app-todo-task>
+  </div>
+  <div class="col-lg-4 col-md-4">
+    <h5>Low Priority Tasks</h5>
+    <app-todo-task
+      [taskItem]="task"
+      *ngFor="let task of lowPriorityList"
+    ></app-todo-task>
+  </div>
+</div>

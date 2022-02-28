@@ -1,0 +1,42 @@
+<div class="card">
+  <div class="card-body">
+    <form>
+      <div class="mb-3">
+        <input
+          name="name"
+          type="text"
+          [(ngModel)]="task.name"
+          class="form-control"
+          placeholder="Task Name"
+        />
+      </div>
+      <div class="mb-3">
+        <textarea
+          rows="3"
+          name="desc"
+          [(ngModel)]="task.desc"
+          class="form-control"
+          placeholder="Task Description"
+        ></textarea>
+      </div>
+      <div class="mb-3">
+        <input
+          name="priority"
+          type="number"
+          [(ngModel)]="task.priority"
+          class="form-control"
+          placeholder="Task Priority"
+        />
+      </div>
+      <div>
+        <button
+          (click)="addTask()"
+          type="button"
+          class="btn btn-info btn-block"
+        >
+          Add Task
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
