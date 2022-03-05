@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { Task } from '../../interfaces/todo.interface';
+import { TodoService } from '../../services/todo.service';
 @Component({
   selector: 'app-todo-form',
   templateUrl: './todo-form.component.html',
@@ -12,9 +13,16 @@ export class TodoFormComponent {
     priority: null,
   };
 
-  @Output() taskEvent: EventEmitter<Task> = new EventEmitter<Task>();
+  constructor(private todoService: TodoService) {}
+  @Output() taskEvent: EventEmitter<any> = new EventEmitter<any>();
 
   addTask() {
-    this.taskEvent.emit(this.task);
+    this.todoService.addTodoTask(this.task).subscribe(() => {
+      this.todoService.getTodos().subscribe((data) => {
+        const todosList = this.todoService.transformTodos(data);
+
+        this.taskEvent.emit(todosList);
+      });
+    });
   }
 }

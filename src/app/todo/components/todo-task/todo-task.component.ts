@@ -11,4 +11,8 @@ export class TodoTaskComponent {
   getCardBorder() {
     return this.todoService.getCardBorder(this.taskItem.priority);
   }
+
+  deleteTask(id: string) {
+    console.log('id ==>', id);
+  }
 }

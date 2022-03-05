@@ -3,7 +3,12 @@
     <div>{{ taskItem?.name }}</div>
     <div>
       <span><span class="oi oi-pencil mr-3 text-info"></span></span>
-      <span><span class="oi oi-trash text-danger"></span></span>
+      <span
+        ><span
+          (click)="deleteTask(taskItem?.id)"
+          class="oi oi-trash text-danger"
+        ></span
+      ></span>
     </div>
   </div>
   <div class="card-body">

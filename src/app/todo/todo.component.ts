@@ -1,30 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Task } from './interfaces/todo.interface';
+import { TodoService } from './services/todo.service';
 
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.css'],
 })
-export class TodoComponent {
+export class TodoComponent implements OnInit {
   highPriorityTask: Task[] = [];
   mediumPriorityTask: Task[] = [];
   lowPriorityTask: Task[] = [];
 
-  handleTaskEvent(task: Task) {
-    switch (task.priority) {
-      case 1: {
-        this.highPriorityTask = [...this.highPriorityTask, { ...task }];
-        break;
-      }
-      case 2: {
-        this.mediumPriorityTask = [...this.mediumPriorityTask, { ...task }];
-        break;
-      }
-      case 3: {
-        this.lowPriorityTask = [...this.lowPriorityTask, { ...task }];
-        break;
-      }
-    }
+  constructor(private todoService: TodoService) {}
+
+  ngOnInit(): void {
+    this.todoService.getTodos().subscribe((data) => {
+      const todosList = this.todoService.transformTodos(data);
+      const obj = this.todoService.filterByCategories(todosList);
+      this.updateTasks(obj);
+    });
+  }
+  updateTasks(todosCategories: any) {
+    this.highPriorityTask = todosCategories.highPriorities;
+    this.mediumPriorityTask = todosCategories.mediumPriorities;
+    this.lowPriorityTask = todosCategories.lowPriorities;
+  }
+  handleTaskEvent(todosList: any) {
+    const obj = this.todoService.filterByCategories(todosList);
+    this.updateTasks(obj);
   }
 }
